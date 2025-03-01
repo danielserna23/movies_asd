@@ -1,5 +1,11 @@
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - '**/*.freezed.dart'
+    - '**/*.g.dart'
+  errors:
+    invalid_annotation_target: ignore
 
 linter:
   rules:
@@ -9,7 +15,7 @@ linter:
     - avoid_unnecessary_containers
     - use_key_in_widget_constructors
     - prefer_final_fields
-    - avoid_positional_boolean_parameters
+
     - require_trailing_commas
     - avoid_print
     - unnecessary_null_checks
