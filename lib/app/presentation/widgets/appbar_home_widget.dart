@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/media_list_provider.dart';
+import '../providers/media_provider.dart';
 import '../providers/theme_provider.dart';
 import '../responsive/responsive.dart';
 import 'input_search_widget.dart';

@@ -15,4 +15,9 @@ class MediaRepositoryImpl implements MediaRepository {
   Future<ResultMedia> searchMedia(String query, int page) {
     return _mediaApi.searchMedia(query, page);
   }
+
+  @override
+  Future<ResultMovie> getMediaById(int mediaId) {
+    return _mediaApi.getMediaById(mediaId);
+  }
 }

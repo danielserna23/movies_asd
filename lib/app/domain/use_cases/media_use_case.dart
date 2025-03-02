@@ -10,4 +10,6 @@ class MediaUseCase {
       _mediaRepository.getMedia(page);
   Future<ResultMedia> searchMedia(String query, int page) async =>
       _mediaRepository.searchMedia(query, page);
+  Future<ResultMovie> getMediaById(int mediaId) async =>
+      _mediaRepository.getMediaById(mediaId);
 }

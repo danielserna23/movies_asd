@@ -1,12 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/api_source/api_source_povider.dart';
-import '../../data/repositories/media_repository_impl.dart';
-import '../../data/services/remote/media_api.dart';
 import '../../domain/failures/request_failure/request_failure.dart';
-import '../../domain/repositories/media_repository.dart';
 import '../../domain/result/result.dart';
 import '../../domain/use_cases/media_use_case.dart';
+import 'media_provider.dart';
 import 'state/media_list_state.dart';
 
 class MediaListNotifier extends StateNotifier<MediaListState> {
@@ -47,7 +44,7 @@ class MediaListNotifier extends StateNotifier<MediaListState> {
           state = MediaListState.error(RequestFailure.unknown());
       }
     } else if (query.isEmpty) {
-      fetchMedia(); // Volver a mostrar todas las películas
+      fetchMedia();
     }
   }
 
@@ -83,15 +80,3 @@ final mediaListProvider =
   notifier.fetchMedia();
   return notifier;
 });
-
-final mediaUseCaseProvider = Provider<MediaUseCase>((ref) {
-  final movieService = ref.read(mediaRepositoryProvider);
-  return MediaUseCase(movieService);
-});
-
-final mediaRepositoryProvider = Provider<MediaRepository>((ref) {
-  final apiSource = ref.read(apiSourceProvider);
-  return MediaRepositoryImpl(MediaApi(apiSource));
-});
-
-final isSearchingProvider = StateProvider<bool>((ref) => false);

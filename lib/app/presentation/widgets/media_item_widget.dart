@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../config/utils/get_image_url.dart';
 import '../../domain/models/media/media.dart';
@@ -15,7 +16,7 @@ class MediaItemWidget extends StatelessWidget {
     return FadeInUp(
       delay: const Duration(milliseconds: 500),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () => context.push('/movie/${media.id}'),
         child: Stack(
           children: [
             ClipRRect(

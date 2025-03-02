@@ -77,7 +77,7 @@ class _$IsDarkModeCopyWithImpl<$Res> implements $IsDarkModeCopyWith<$Res> {
 /// @nodoc
 
 class _IsDarkMode implements IsDarkMode {
-  const _IsDarkMode({this.isDarkMode = false});
+  _IsDarkMode({this.isDarkMode = false});
 
   @override
   @JsonKey()
