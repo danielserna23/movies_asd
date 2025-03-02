@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../config/utils/get_image_url.dart';
 import '../../domain/models/movie/movie.dart';
+import '../responsive/responsive.dart';
 
 class SliverAppBarMovie extends StatelessWidget {
   const SliverAppBarMovie({
@@ -13,13 +14,14 @@ class SliverAppBarMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive.of(context);
     return SliverAppBar(
-      expandedHeight: 300,
+      expandedHeight: responsive.hp(responsive.isTablet ? 40 : 28),
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
           movie.title,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontSize: responsive.dp(2)),
         ),
         background: Stack(
           children: [
@@ -40,6 +42,7 @@ class SliverAppBarMovie extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.black,
+                      Colors.black12,
                       Colors.transparent,
                     ],
                   ),
@@ -49,11 +52,17 @@ class SliverAppBarMovie extends StatelessWidget {
           ],
         ),
       ),
-      iconTheme: const IconThemeData(color: Colors.white),
+      iconTheme: IconThemeData(
+        color: Colors.white,
+        size: responsive.dp(responsive.isTablet ? 3 : 2.5),
+      ),
       actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.favorite_outline),
+        Padding(
+          padding: const EdgeInsets.only(right: 15),
+          child: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.favorite_outline),
+          ),
         ),
       ],
     );

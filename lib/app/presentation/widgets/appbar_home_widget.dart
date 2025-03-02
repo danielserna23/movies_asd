@@ -48,9 +48,11 @@ class AppbarHomeWidget extends ConsumerWidget implements PreferredSizeWidget {
                       ? Icon(
                           Icons.search,
                           size: responsive.dp(2),
+                          color: Colors.white,
                         )
                       : IconButton(
                           icon: const Icon(Icons.clear),
+                          color: Colors.white,
                           onPressed: () {
                             searchController.clear();
                           },

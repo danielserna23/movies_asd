@@ -19,17 +19,20 @@ class MediaItemWidget extends StatelessWidget {
         onTap: () => context.push('/movie/${media.id}'),
         child: Stack(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                height: responsive.hp(responsive.isTablet ? 34 : 28),
-                getImageUrl(
-                  media.posterPath,
-                  imageQuality: responsive.isTablet
-                      ? ImageQuality.w500
-                      : ImageQuality.w300,
+            Hero(
+              tag: 'movie-image-${media.id}',
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  height: responsive.hp(responsive.isTablet ? 34 : 28),
+                  getImageUrl(
+                    media.posterPath,
+                    imageQuality: responsive.isTablet
+                        ? ImageQuality.w500
+                        : ImageQuality.w300,
+                  ),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
             ),
             Positioned(
