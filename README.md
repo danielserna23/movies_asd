@@ -87,13 +87,6 @@ Esta aplicación utiliza la arquitectura **Clean Architecture** para lograr una 
     flutter run
     ```
 
-## Estructura de Carpetas
-
-Tienes razón, la representación de la estructura de carpetas en un archivo README.md puede ser un poco difícil de leer si se hace de forma lineal. Vamos a mejorarla utilizando un formato de lista con sangrías, que es mucho más claro y fácil de entender.
-
-Aquí tienes la sección de estructura de carpetas actualizada para tu README.md, utilizando un formato de lista con sangrías:
-
-Markdown
 
 ## Estructura de Carpetas
 
