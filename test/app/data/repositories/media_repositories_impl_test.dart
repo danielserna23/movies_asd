@@ -60,6 +60,7 @@ Movie createFakeMovie({
     voteAverage: voteAverage,
     backdropPath: backdropPath,
     posterPath: posterPath,
+    homepage: homepage,
   );
 }
 

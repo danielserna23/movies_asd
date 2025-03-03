@@ -19,6 +19,7 @@ mixin _$Movie {
   List<Genre> get genres;
   String get overview;
   bool get video;
+  String get homepage;
 
   ///
   @JsonKey(name: 'title')
@@ -54,6 +55,8 @@ mixin _$Movie {
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
             (identical(other.video, video) || other.video == video) &&
+            (identical(other.homepage, homepage) ||
+                other.homepage == homepage) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.originalTitle, originalTitle) ||
                 other.originalTitle == originalTitle) &&
@@ -75,6 +78,7 @@ mixin _$Movie {
       const DeepCollectionEquality().hash(genres),
       overview,
       video,
+      homepage,
       title,
       originalTitle,
       releaseDate,
@@ -84,7 +88,7 @@ mixin _$Movie {
 
   @override
   String toString() {
-    return 'Movie(id: $id, genres: $genres, overview: $overview, video: $video, title: $title, originalTitle: $originalTitle, releaseDate: $releaseDate, voteAverage: $voteAverage, backdropPath: $backdropPath, posterPath: $posterPath)';
+    return 'Movie(id: $id, genres: $genres, overview: $overview, video: $video, homepage: $homepage, title: $title, originalTitle: $originalTitle, releaseDate: $releaseDate, voteAverage: $voteAverage, backdropPath: $backdropPath, posterPath: $posterPath)';
   }
 }
 
@@ -98,6 +102,7 @@ abstract mixin class $MovieCopyWith<$Res> {
       List<Genre> genres,
       String overview,
       bool video,
+      String homepage,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'original_title') String originalTitle,
       @JsonKey(name: 'release_date') DateTime releaseDate,
@@ -122,6 +127,7 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
     Object? genres = null,
     Object? overview = null,
     Object? video = null,
+    Object? homepage = null,
     Object? title = null,
     Object? originalTitle = null,
     Object? releaseDate = null,
@@ -146,6 +152,10 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
           ? _self.video
           : video // ignore: cast_nullable_to_non_nullable
               as bool,
+      homepage: null == homepage
+          ? _self.homepage
+          : homepage // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -182,6 +192,7 @@ class _Movie extends Movie {
       required final List<Genre> genres,
       required this.overview,
       required this.video,
+      required this.homepage,
       @JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'original_title') required this.originalTitle,
       @JsonKey(name: 'release_date') required this.releaseDate,
@@ -206,6 +217,8 @@ class _Movie extends Movie {
   final String overview;
   @override
   final bool video;
+  @override
+  final String homepage;
 
   ///
   @override
@@ -252,6 +265,8 @@ class _Movie extends Movie {
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
             (identical(other.video, video) || other.video == video) &&
+            (identical(other.homepage, homepage) ||
+                other.homepage == homepage) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.originalTitle, originalTitle) ||
                 other.originalTitle == originalTitle) &&
@@ -273,6 +288,7 @@ class _Movie extends Movie {
       const DeepCollectionEquality().hash(_genres),
       overview,
       video,
+      homepage,
       title,
       originalTitle,
       releaseDate,
@@ -282,7 +298,7 @@ class _Movie extends Movie {
 
   @override
   String toString() {
-    return 'Movie(id: $id, genres: $genres, overview: $overview, video: $video, title: $title, originalTitle: $originalTitle, releaseDate: $releaseDate, voteAverage: $voteAverage, backdropPath: $backdropPath, posterPath: $posterPath)';
+    return 'Movie(id: $id, genres: $genres, overview: $overview, video: $video, homepage: $homepage, title: $title, originalTitle: $originalTitle, releaseDate: $releaseDate, voteAverage: $voteAverage, backdropPath: $backdropPath, posterPath: $posterPath)';
   }
 }
 
@@ -297,6 +313,7 @@ abstract mixin class _$MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
       List<Genre> genres,
       String overview,
       bool video,
+      String homepage,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'original_title') String originalTitle,
       @JsonKey(name: 'release_date') DateTime releaseDate,
@@ -321,6 +338,7 @@ class __$MovieCopyWithImpl<$Res> implements _$MovieCopyWith<$Res> {
     Object? genres = null,
     Object? overview = null,
     Object? video = null,
+    Object? homepage = null,
     Object? title = null,
     Object? originalTitle = null,
     Object? releaseDate = null,
@@ -345,6 +363,10 @@ class __$MovieCopyWithImpl<$Res> implements _$MovieCopyWith<$Res> {
           ? _self.video
           : video // ignore: cast_nullable_to_non_nullable
               as bool,
+      homepage: null == homepage
+          ? _self.homepage
+          : homepage // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable

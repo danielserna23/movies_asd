@@ -33,7 +33,7 @@ class MediaApi {
 
   Future<ResultMedia> searchMedia(String query, int page) async {
     final result = await _apiSource.request(
-      '/search/multi',
+      '/search/movie',
       queryParameters: {
         'query': query,
       },

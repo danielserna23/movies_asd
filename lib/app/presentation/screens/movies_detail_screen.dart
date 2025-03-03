@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../config/utils/date_format.dart';
 import '../../config/utils/get_image_url.dart';
+import '../../config/utils/share_movie.dart';
 import '../../domain/models/movie/movie.dart';
 import '../providers/media/media_detail_provider.dart';
 import '../providers/state/media_detail_state.dart';
 import '../responsive/responsive.dart';
+import '../widgets/actors_by_movie.dart';
+import '../widgets/error_view_widget.dart';
 import '../widgets/sliver_appbar_movie.dart';
 
 class MoviesDetailScreen extends ConsumerWidget {
@@ -21,11 +25,8 @@ class MoviesDetailScreen extends ConsumerWidget {
           const Center(child: CircularProgressIndicator()),
         MediaDetailStateLoaded(movie: final movie) =>
           Center(child: _MovieDetailView(movie)),
-        MediaDetailStateError() =>
-          const Center(child: CircularProgressIndicator()),
-        _ => const Center(
-            child: Text('Error'),
-          ),
+        MediaDetailStateError() => const ErrorViewWidget(),
+        _ => const ErrorViewWidget(),
       },
     );
   }
@@ -56,7 +57,7 @@ class _MovieDetailView extends ConsumerWidget {
                     spacing: 20,
                     children: [
                       Hero(
-                        tag: 'movie-image-${movie.id}',
+                        tag: 'movie-image-${movie.id}-${movie.title}',
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Image.network(
@@ -69,19 +70,35 @@ class _MovieDetailView extends ConsumerWidget {
                         ),
                       ),
                       Expanded(
-                        child: Text(
-                          movie.overview,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            fontSize: responsive.dp(1.2),
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              movie.overview,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                fontSize: responsive.dp(1.2),
+                              ),
+                            ),
+                            responsive.isTablet
+                                ? const SizedBox()
+                                : IconButton(
+                                    onPressed: () =>
+                                        shareMovieWithPoster(movie),
+                                    icon: const Icon(Icons.share),
+                                  ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
+                Text(
+                  DateFormattrer.date(movie.releaseDate),
+                  style: TextStyle(fontSize: responsive.dp(1.5)),
+                ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(responsive.dp(2)),
                   child: Wrap(
                     children: [
                       ...movie.genres.map(
@@ -102,6 +119,25 @@ class _MovieDetailView extends ConsumerWidget {
                       ),
                     ],
                   ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: responsive.wp(3),
+                        top: responsive.hp(3),
+                      ),
+                      child: Text(
+                        'Cast:',
+                        style: TextStyle(fontSize: responsive.dp(1.4)),
+                      ),
+                    ),
+                    ActorsByMovie(movieId: movie.id),
+                  ],
+                ),
+                const SizedBox(
+                  height: 100,
                 ),
               ],
             ),

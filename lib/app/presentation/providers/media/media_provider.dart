@@ -7,12 +7,12 @@ import '../../../domain/repositories/media_repository.dart';
 import '../../../domain/use_cases/media_use_case.dart';
 
 final mediaUseCaseProvider = Provider<MediaUseCase>((ref) {
-  final movieService = ref.read(mediaRepositoryProvider);
+  final movieService = ref.watch(mediaRepositoryProvider);
   return MediaUseCase(movieService);
 });
 
 final mediaRepositoryProvider = Provider<MediaRepository>((ref) {
-  final apiSource = ref.read(apiSourceProvider);
+  final apiSource = ref.watch(apiSourceProvider);
   return MediaRepositoryImpl(MediaApi(apiSource));
 });
 

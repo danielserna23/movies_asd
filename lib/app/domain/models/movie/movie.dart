@@ -14,6 +14,7 @@ sealed class Movie with _$Movie {
     required List<Genre> genres,
     required String overview,
     required bool video,
+    required String homepage,
 
     ///
     @JsonKey(name: 'title') required String title,

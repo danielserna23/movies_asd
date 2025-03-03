@@ -8,6 +8,8 @@ import '../providers/media/media_list_provider.dart';
 import '../providers/state/media_list_state.dart';
 import '../responsive/responsive.dart';
 import '../widgets/appbar_home_widget.dart';
+import '../widgets/empty_view_widget.dart';
+import '../widgets/error_view_widget.dart';
 import '../widgets/media_item_widget.dart';
 
 class HomeMoviesScreen extends ConsumerStatefulWidget {
@@ -85,7 +87,7 @@ class _HomeMoviesScreenState extends ConsumerState<HomeMoviesScreen> {
         MediaListStateLoading() =>
           const Center(child: CircularProgressIndicator()),
         MediaListStateLoaded(media: final media) => media.isEmpty
-            ? const Text('empty')
+            ? const EmptyViewWidget()
             : MasonryGridView.count(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 controller: _scrollController,
@@ -105,11 +107,8 @@ class _HomeMoviesScreenState extends ConsumerState<HomeMoviesScreen> {
                   return MediaItemWidget(media: media[index]);
                 },
               ),
-        MediaListStateError(failure: final failure) =>
-          Center(child: Text('Error: ${failure.runtimeType}')),
-        _ => const Center(
-            child: Text('Error'),
-          ),
+        MediaListStateError(failure: final _) => const ErrorViewWidget(),
+        _ => const ErrorViewWidget(),
       },
       floatingActionButton: !responsive.isTablet
           ? FloatingActionButton(
