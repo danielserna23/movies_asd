@@ -1,6 +1,6 @@
 # movies_asd
 
-Descripción breve de la aplicación y su propósito.
+Es una aplicación móvil desarrollada con Flutter que te permite explorar el emocionante mundo del cine. Descubre las últimas películas en tendencia, busca tus títulos favoritos, sumérgete en los detalles de cada película y crea tu propia colección de películas favoritas.
 
 ## Arquitectura
 
