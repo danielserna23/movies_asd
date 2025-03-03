@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/preferences_repository_impl.dart';
-import '../../domain/repositories/preferences_repository.dart';
+import '../../../data/repositories/preferences_repository_impl.dart';
+import '../../../domain/repositories/preferences_repository.dart';
 
 class DarkModeNotifier extends StateNotifier<bool> {
   final PreferencesRepository _preferencesRepository;

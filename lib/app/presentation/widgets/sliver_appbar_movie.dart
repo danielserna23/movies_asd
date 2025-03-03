@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config/utils/get_image_url.dart';
 import '../../domain/models/movie/movie.dart';
+import '../providers/favorites/is_favorite_provider.dart';
 import '../responsive/responsive.dart';
 
-class SliverAppBarMovie extends StatelessWidget {
+class SliverAppBarMovie extends ConsumerWidget {
   const SliverAppBarMovie({
     super.key,
     required this.movie,
@@ -13,7 +15,8 @@ class SliverAppBarMovie extends StatelessWidget {
   final Movie movie;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isFavorite = ref.watch(isFavoriteProvider(movie.id));
     final responsive = Responsive.of(context);
     return SliverAppBar(
       expandedHeight: responsive.hp(responsive.isTablet ? 40 : 28),
@@ -60,8 +63,12 @@ class SliverAppBarMovie extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 15),
           child: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite_outline),
+            onPressed: () async {
+              await ref
+                  .read(isFavoriteProvider(movie.id).notifier)
+                  .toggleFavorite(movie.toMedia());
+            },
+            icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_outline),
           ),
         ),
       ],

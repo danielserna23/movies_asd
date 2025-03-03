@@ -13,12 +13,11 @@ sealed class Movie with _$Movie {
     required int id,
     required List<Genre> genres,
     required String overview,
-    required int runtime,
     required bool video,
 
     ///
-    @JsonKey(readValue: readTitleValue) required String title,
-    @JsonKey(readValue: readOriginalTitleValue) required String originalTitle,
+    @JsonKey(name: 'title') required String title,
+    @JsonKey(name: 'original_title') required String originalTitle,
     @JsonKey(name: 'release_date') required DateTime releaseDate,
     @JsonKey(name: 'vote_average') required double voteAverage,
     @JsonKey(name: 'backdrop_path') required String backdropPath,
@@ -26,4 +25,16 @@ sealed class Movie with _$Movie {
   }) = _Movie;
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
+
+  Media toMedia() {
+    return Media(
+      id: id,
+      overview: overview,
+      title: title,
+      originalTitle: originalTitle,
+      posterPath: posterPath,
+      backdropPath: backdropPath,
+      voteAverage: voteAverage,
+    );
+  }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../domain/failures/request_failure/request_failure.dart';
-import '../../domain/result/result.dart';
-import '../../domain/use_cases/media_use_case.dart';
+import '../../../domain/failures/request_failure/request_failure.dart';
+import '../../../domain/result/result.dart';
+import '../../../domain/use_cases/media_use_case.dart';
+import '../state/media_list_state.dart';
 import 'media_provider.dart';
-import 'state/media_list_state.dart';
 
 class MediaListNotifier extends StateNotifier<MediaListState> {
   final MediaUseCase _mediaUseCase;

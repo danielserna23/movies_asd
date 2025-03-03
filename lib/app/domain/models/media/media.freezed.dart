@@ -15,18 +15,23 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$Media {
+  @HiveField(0)
   int get id;
-  String get overview; //
-  @JsonKey(readValue: readTitleValue)
+  @HiveField(1)
+  String get overview;
+  @HiveField(2)
+  @JsonKey(name: 'title')
   String get title;
-  @JsonKey(readValue: readOriginalTitleValue)
+  @HiveField(3)
+  @JsonKey(name: 'original_title')
   String get originalTitle;
+  @HiveField(4)
   @JsonKey(name: 'poster_path')
   String get posterPath;
+  @HiveField(5)
   @JsonKey(name: 'backdrop_path')
   String? get backdropPath;
-  @JsonKey(name: 'media_type')
-  MediaType get type;
+  @HiveField(7)
   @JsonKey(name: 'vote_average')
   double get voteAverage;
 
@@ -55,7 +60,6 @@ mixin _$Media {
                 other.posterPath == posterPath) &&
             (identical(other.backdropPath, backdropPath) ||
                 other.backdropPath == backdropPath) &&
-            (identical(other.type, type) || other.type == type) &&
             (identical(other.voteAverage, voteAverage) ||
                 other.voteAverage == voteAverage));
   }
@@ -63,11 +67,11 @@ mixin _$Media {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, overview, title,
-      originalTitle, posterPath, backdropPath, type, voteAverage);
+      originalTitle, posterPath, backdropPath, voteAverage);
 
   @override
   String toString() {
-    return 'Media(id: $id, overview: $overview, title: $title, originalTitle: $originalTitle, posterPath: $posterPath, backdropPath: $backdropPath, type: $type, voteAverage: $voteAverage)';
+    return 'Media(id: $id, overview: $overview, title: $title, originalTitle: $originalTitle, posterPath: $posterPath, backdropPath: $backdropPath, voteAverage: $voteAverage)';
   }
 }
 
@@ -77,14 +81,13 @@ abstract mixin class $MediaCopyWith<$Res> {
       _$MediaCopyWithImpl;
   @useResult
   $Res call(
-      {int id,
-      String overview,
-      @JsonKey(readValue: readTitleValue) String title,
-      @JsonKey(readValue: readOriginalTitleValue) String originalTitle,
-      @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(name: 'backdrop_path') String? backdropPath,
-      @JsonKey(name: 'media_type') MediaType type,
-      @JsonKey(name: 'vote_average') double voteAverage});
+      {@HiveField(0) int id,
+      @HiveField(1) String overview,
+      @HiveField(2) @JsonKey(name: 'title') String title,
+      @HiveField(3) @JsonKey(name: 'original_title') String originalTitle,
+      @HiveField(4) @JsonKey(name: 'poster_path') String posterPath,
+      @HiveField(5) @JsonKey(name: 'backdrop_path') String? backdropPath,
+      @HiveField(7) @JsonKey(name: 'vote_average') double voteAverage});
 }
 
 /// @nodoc
@@ -105,7 +108,6 @@ class _$MediaCopyWithImpl<$Res> implements $MediaCopyWith<$Res> {
     Object? originalTitle = null,
     Object? posterPath = null,
     Object? backdropPath = freezed,
-    Object? type = null,
     Object? voteAverage = null,
   }) {
     return _then(_self.copyWith(
@@ -133,10 +135,6 @@ class _$MediaCopyWithImpl<$Res> implements $MediaCopyWith<$Res> {
           ? _self.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
               as String?,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MediaType,
       voteAverage: null == voteAverage
           ? _self.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable
@@ -149,37 +147,41 @@ class _$MediaCopyWithImpl<$Res> implements $MediaCopyWith<$Res> {
 @JsonSerializable()
 class _Media implements Media {
   _Media(
-      {required this.id,
-      required this.overview,
-      @JsonKey(readValue: readTitleValue) required this.title,
-      @JsonKey(readValue: readOriginalTitleValue) required this.originalTitle,
-      @JsonKey(name: 'poster_path') required this.posterPath,
-      @JsonKey(name: 'backdrop_path') required this.backdropPath,
-      @JsonKey(name: 'media_type') required this.type,
-      @JsonKey(name: 'vote_average') required this.voteAverage});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.overview,
+      @HiveField(2) @JsonKey(name: 'title') required this.title,
+      @HiveField(3)
+      @JsonKey(name: 'original_title')
+      required this.originalTitle,
+      @HiveField(4) @JsonKey(name: 'poster_path') required this.posterPath,
+      @HiveField(5) @JsonKey(name: 'backdrop_path') required this.backdropPath,
+      @HiveField(7) @JsonKey(name: 'vote_average') required this.voteAverage});
   factory _Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String overview;
-//
   @override
-  @JsonKey(readValue: readTitleValue)
+  @HiveField(2)
+  @JsonKey(name: 'title')
   final String title;
   @override
-  @JsonKey(readValue: readOriginalTitleValue)
+  @HiveField(3)
+  @JsonKey(name: 'original_title')
   final String originalTitle;
   @override
+  @HiveField(4)
   @JsonKey(name: 'poster_path')
   final String posterPath;
   @override
+  @HiveField(5)
   @JsonKey(name: 'backdrop_path')
   final String? backdropPath;
   @override
-  @JsonKey(name: 'media_type')
-  final MediaType type;
-  @override
+  @HiveField(7)
   @JsonKey(name: 'vote_average')
   final double voteAverage;
 
@@ -213,7 +215,6 @@ class _Media implements Media {
                 other.posterPath == posterPath) &&
             (identical(other.backdropPath, backdropPath) ||
                 other.backdropPath == backdropPath) &&
-            (identical(other.type, type) || other.type == type) &&
             (identical(other.voteAverage, voteAverage) ||
                 other.voteAverage == voteAverage));
   }
@@ -221,11 +222,11 @@ class _Media implements Media {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, overview, title,
-      originalTitle, posterPath, backdropPath, type, voteAverage);
+      originalTitle, posterPath, backdropPath, voteAverage);
 
   @override
   String toString() {
-    return 'Media(id: $id, overview: $overview, title: $title, originalTitle: $originalTitle, posterPath: $posterPath, backdropPath: $backdropPath, type: $type, voteAverage: $voteAverage)';
+    return 'Media(id: $id, overview: $overview, title: $title, originalTitle: $originalTitle, posterPath: $posterPath, backdropPath: $backdropPath, voteAverage: $voteAverage)';
   }
 }
 
@@ -236,14 +237,13 @@ abstract mixin class _$MediaCopyWith<$Res> implements $MediaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String overview,
-      @JsonKey(readValue: readTitleValue) String title,
-      @JsonKey(readValue: readOriginalTitleValue) String originalTitle,
-      @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(name: 'backdrop_path') String? backdropPath,
-      @JsonKey(name: 'media_type') MediaType type,
-      @JsonKey(name: 'vote_average') double voteAverage});
+      {@HiveField(0) int id,
+      @HiveField(1) String overview,
+      @HiveField(2) @JsonKey(name: 'title') String title,
+      @HiveField(3) @JsonKey(name: 'original_title') String originalTitle,
+      @HiveField(4) @JsonKey(name: 'poster_path') String posterPath,
+      @HiveField(5) @JsonKey(name: 'backdrop_path') String? backdropPath,
+      @HiveField(7) @JsonKey(name: 'vote_average') double voteAverage});
 }
 
 /// @nodoc
@@ -264,7 +264,6 @@ class __$MediaCopyWithImpl<$Res> implements _$MediaCopyWith<$Res> {
     Object? originalTitle = null,
     Object? posterPath = null,
     Object? backdropPath = freezed,
-    Object? type = null,
     Object? voteAverage = null,
   }) {
     return _then(_Media(
@@ -292,10 +291,6 @@ class __$MediaCopyWithImpl<$Res> implements _$MediaCopyWith<$Res> {
           ? _self.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
               as String?,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MediaType,
       voteAverage: null == voteAverage
           ? _self.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable

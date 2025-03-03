@@ -2,13 +2,14 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../config/utils/get_image_url.dart';
 import '../../domain/models/media/media.dart';
 import '../responsive/responsive.dart';
+import 'poster_image_widget.dart';
 
 class MediaItemWidget extends StatelessWidget {
   final Media media;
-  const MediaItemWidget({super.key, required this.media});
+  final bool isHeroId;
+  const MediaItemWidget({super.key, required this.media, this.isHeroId = true});
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +20,18 @@ class MediaItemWidget extends StatelessWidget {
         onTap: () => context.push('/movie/${media.id}'),
         child: Stack(
           children: [
-            Hero(
-              tag: 'movie-image-${media.id}',
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  height: responsive.hp(responsive.isTablet ? 34 : 28),
-                  getImageUrl(
-                    media.posterPath,
-                    imageQuality: responsive.isTablet
-                        ? ImageQuality.w500
-                        : ImageQuality.w300,
+            isHeroId
+                ? Hero(
+                    tag: 'movie-image-${media.id}',
+                    child: PosterImageWidget(
+                      responsive: responsive,
+                      media: media,
+                    ),
+                  )
+                : PosterImageWidget(
+                    responsive: responsive,
+                    media: media,
                   ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
             Positioned(
               child: Container(
                 height: responsive.hp(12),
@@ -64,7 +61,7 @@ class MediaItemWidget extends StatelessWidget {
                   color: Colors.white38,
                 ),
                 child: Icon(
-                  media.type == MediaType.movie ? Icons.movie : Icons.tv,
+                  Icons.movie,
                   size: responsive.hp(1.5),
                 ),
               ),

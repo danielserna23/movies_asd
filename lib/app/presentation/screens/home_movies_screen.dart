@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:go_router/go_router.dart';
 
-import '../providers/media_list_provider.dart';
+import '../../config/routes/routes.dart';
+import '../providers/media/media_list_provider.dart';
 import '../providers/state/media_list_state.dart';
 import '../responsive/responsive.dart';
 import '../widgets/appbar_home_widget.dart';
@@ -112,12 +114,12 @@ class _HomeMoviesScreenState extends ConsumerState<HomeMoviesScreen> {
       floatingActionButton: !responsive.isTablet
           ? FloatingActionButton(
               shape: const CircleBorder(),
-              onPressed: () {},
+              onPressed: () => context.pushNamed(Routes.favorites),
               child: const Icon(Icons.favorite),
             )
           : FloatingActionButton.large(
               shape: const CircleBorder(),
-              onPressed: () {},
+              onPressed: () => context.pushNamed(Routes.favorites),
               child: const Icon(Icons.favorite),
             ),
     );

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config/utils/get_image_url.dart';
 import '../../domain/models/movie/movie.dart';
-import '../providers/media_detail_provider.dart';
+import '../providers/media/media_detail_provider.dart';
 import '../providers/state/media_detail_state.dart';
 import '../responsive/responsive.dart';
 import '../widgets/sliver_appbar_movie.dart';

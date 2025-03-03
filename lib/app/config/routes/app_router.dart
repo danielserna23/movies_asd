@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../presentation/presentation.dart';
+import '../../presentation/screens/favorites_screen.dart';
 import '../../presentation/screens/movies_detail_screen.dart';
 import 'routes.dart';
 
@@ -20,6 +21,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           final movieId = state.pathParameters['id'] ?? '0';
           return MoviesDetailScreen(mediaId: int.parse(movieId));
         },
+      ),
+      GoRoute(
+        path: '/favorites',
+        name: Routes.favorites,
+        builder: (context, state) => const FavoritesScreen(),
       ),
     ],
   );
