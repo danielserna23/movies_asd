@@ -35,12 +35,12 @@ Esta aplicación utiliza la arquitectura **Clean Architecture** para lograr una 
 * **json_serializable**: Para generar código de serialización y deserialización de JSON, lo que simplifica la interacción con la API.
 * **build_runner**: Para ejecutar los generadores de código de Hive y `json_serializable`.
 * **flutter_staggered_grid_view:** Permite crear grillas dinámicas y visualmente atractivas para mostrar las películas, mejorando la experiencia de usuario.
-* **freezed:** Facilita la creación de clases de datos inmutables, reduciendo el código boilerplate y mejorando la seguridad del tipo.
+* **freezed:** Facilita la creación de clases de datos inmutables, reduciendo el código y mejorando la seguridad del tipo.
 * **intl:** Permite formatear fechas y números de manera consistente, adaptándose a las preferencias de idioma del usuario.
 * **go_router:** Simplifica la gestión de la navegación en la aplicación, permitiendo una navegación declarativa y basada en rutas.
 * **share_plus:** Permite a los usuarios compartir fácilmente información sobre las películas con sus contactos.
 * **shared_preferences:** Permite almacenar las preferencias del usuario, como el tema claro u oscuro, para personalizar la experiencia de la aplicación.
-* **flutter_bloc:** Para la gestión del estado de la aplicación
+* **flutter_riverpod:** Para la gestión del estado de la aplicación
 * **http:** Para realizar peticiones HTTP
 * **flutter_dotenv:** Para cargar variables de entorno desde el archivo `.env`
 * **animate_do:** Para realizar animaciones en imágenes y textos
@@ -50,7 +50,7 @@ Esta aplicación utiliza la arquitectura **Clean Architecture** para lograr una 
 1.  **Clonar el repositorio:**
 
     ```bash
-    git clone <URL_del_repositorio>
+    git clone https://github.com/danielserna23/movies_asd.git
     cd <nombre_de_la_aplicacion>
     ```
 
@@ -89,6 +89,15 @@ Esta aplicación utiliza la arquitectura **Clean Architecture** para lograr una 
 
 ## Estructura de Carpetas
 
+Tienes razón, la representación de la estructura de carpetas en un archivo README.md puede ser un poco difícil de leer si se hace de forma lineal. Vamos a mejorarla utilizando un formato de lista con sangrías, que es mucho más claro y fácil de entender.
+
+Aquí tienes la sección de estructura de carpetas actualizada para tu README.md, utilizando un formato de lista con sangrías:
+
+Markdown
+
+## Estructura de Carpetas
+
+```bash
 lib/
 ├── app/
 │   ├── config/
@@ -111,3 +120,4 @@ lib/
 │       ├── screens/
 │       └── widgets/
 └── main.dart
+```
